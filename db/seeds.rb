@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Rate.create!([
+  { sum: 65, title: 'Dollar', code: 'USD' }, 
+  { sum: 70, title: 'Euro', code: 'EUR' }
+])

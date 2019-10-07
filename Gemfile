@@ -10,6 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 gem 'sidekiq', '~> 6.0.1'
+gem 'sidekiq-scheduler', '~> 3.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri]
   gem 'rspec-rails', '~> 3.8.2'
   gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'action-cable-testing', '~> 0.6.0'
 end
 
 group :development do
