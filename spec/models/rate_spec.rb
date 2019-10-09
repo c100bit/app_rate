@@ -36,4 +36,30 @@ RSpec.describe Rate, type: :model do
     it { expect(rate.code).to eq(rate.code.upcase) }
   end
 
+  describe '#current' do
+    before { freeze_time }
+    
+    let!(:rate) { create(:rate_with_force) }
+
+    context 'when force = current time' do 
+      it 'returns force sum' do
+        expect(rate.current).to eq(10)  
+      end
+    end
+    
+    context 'when force date > current date' do 
+      it 'returns force sum' do
+        travel -2.days
+        expect(rate.current).to eq(10)  
+      end
+    end
+    
+    context 'when force date < current date' do 
+      it 'returns sum' do
+        travel 10.days
+        expect(rate.current).to eq(1.5)  
+      end
+    end
+ 
+  end
 end

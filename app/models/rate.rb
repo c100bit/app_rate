@@ -1,4 +1,6 @@
 class Rate < ApplicationRecord
+  scope :ordered, -> { order(:id) }
+
   has_many :histories
 
   validates :sum, presence: true, 
@@ -15,4 +17,13 @@ class Rate < ApplicationRecord
   def code=(val)
     super(val.upcase) if val
   end
+
+  def current
+    if force_sum && force_date >= Time.current
+      force_sum
+    else
+      sum
+    end
+  end
+
 end

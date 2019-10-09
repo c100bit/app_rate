@@ -10,3 +10,13 @@ Rate.create!([
   { sum: 65, title: 'Dollar', code: 'USD' }, 
   { sum: 70, title: 'Euro', code: 'EUR' }
 ])
+
+History.create!([
+  { sum: 60, force_date: Time.current - 3.days, rate: Rate.first },
+  { sum: 70, force_date: Time.current - 2.days, rate: Rate.first },
+  { sum: 80, force_date: Time.current - 1.days, rate: Rate.first },
+
+  { sum: 60, force_date: Time.current - 3.days, rate: Rate.second },
+  { sum: 70, force_date: Time.current - 2.days, rate: Rate.second },
+  { sum: 80, force_date: Time.current - 1.days, rate: Rate.second }
+])
