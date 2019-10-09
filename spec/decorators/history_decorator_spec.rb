@@ -6,7 +6,6 @@ RSpec.describe HistoryDecorator do
   }
 
   it 'returns sum' do
-    p history
     expect(history.sum).to eq('1,50 руб.')
   end
   

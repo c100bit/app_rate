@@ -24,7 +24,7 @@ module ADMIN::API::V1
           each_serializer: ADMIN::API::V1::RateSerializer
 
       else
-        render json: @rate.errors
+        render json: @rate.errors, status: :unprocessable_entity
       end
     end
 
