@@ -66,7 +66,7 @@ class Admin extends React.Component {
         <Form.Group controlId="forceDate">
           <Form.Label>Force Date</Form.Label>
           <Form.Control type="datetime-local" name="force_date"
-            placeholder="Enter force date" defaultValue="2019-10-10T10:00" />
+            placeholder="Enter force date" />
           <Form.Control type="hidden" defaultValue={id} name="id" />
         </Form.Group>
         <Button variant="primary" type="submit">

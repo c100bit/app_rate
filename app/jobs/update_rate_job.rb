@@ -10,7 +10,7 @@ class UpdateRateJob < ApplicationJob
     json = JSON.load(open(url))
     for rate in Rate.all
       sum = json['Valute'][rate.code]['Value']
-      rate.update(sum: sum)
+      rate.update(sum: sum) 
     end
   end
 end

@@ -2,11 +2,10 @@ class ForceRateJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    res = []
-    for rate in Rate.all
-        res << { "#{rate.code}": rate.current } 
-      end
-    end
-    ActionCable.server.broadcast("rates", res.to_json) if res
+    rates_json = ActiveModel::Serializer::CollectionSerializer.new(
+      Rate.ordered, 
+      serializer: API::V1::RateSerializer).as_json
+    ActionCable.server.broadcast("rates", rates_json)
   end
 end
+ 

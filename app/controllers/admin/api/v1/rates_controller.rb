@@ -3,7 +3,8 @@ module ADMIN::API::V1
     before_action :set_rate, only: [:update]
 
     def index
-      render json: Rate.ordered
+      render json: Rate.ordered.decorate, 
+        each_serializer: ADMIN::API::V1::RateSerializer
     end
 
     def update
@@ -13,11 +14,15 @@ module ADMIN::API::V1
           force_date: @rate.force_date
         )
         rates = Rate.ordered
+
         rates_json = ActiveModel::Serializer::CollectionSerializer.new(
           rates, 
           serializer: API::V1::RateSerializer).as_json
         ActionCable.server.broadcast("rates", rates_json)
-        render json: rates
+        
+        render json: rates.decorate, 
+          each_serializer: ADMIN::API::V1::RateSerializer
+
       else
         render json: @rate.errors
       end
