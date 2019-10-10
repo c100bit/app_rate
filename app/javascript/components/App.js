@@ -1,17 +1,16 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { } from 'react-bootstrap'
+import { Container, Navbar } from 'react-bootstrap'
 import axios from 'axios'
 
-// import Home from './Home'
-// import Admin from './Admin'
+import Home from './Home'
+import Admin from './Admin'
 
 class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <Container>
+        <Container>
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">App Rate</Navbar.Brand>
             <Navbar.Toggle />
@@ -20,13 +19,14 @@ class App extends React.Component {
               </Navbar.Text>
             </Navbar.Collapse>
           </Navbar>
+          <Router>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path='/admin' component={Admin} /> 
+              <Route path='/admin' component={Admin} />
             </Switch>
-          </Router > 
-        </Container > */}
-      </React.Fragment >
+          </Router>
+        </Container>
+      </React.Fragment>
     )
   }
 }
