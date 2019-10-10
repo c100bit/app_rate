@@ -30,6 +30,8 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <br />
+        <hr />
         {this.state.rates.map(rate => (
           <Row key={rate.id}>
             <Col>

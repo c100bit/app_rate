@@ -5,8 +5,11 @@ import { Badge, Table, Form, Button, Row, Col } from 'react-bootstrap'
 class Admin extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.state = { rates: [] };
+    super(props)
+    this.state = {
+      rates: [],
+      validated: false
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -43,30 +46,56 @@ class Admin extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const data = new FormData(e.target)
+    const form = e.target
+    if (form.checkValidity() === false) {
+      this.setState({ validated: true })
+      return false
+    }
+    const data = new FormData(form)
     const id = data.get('id')
-    e.target.reset()
+    form.reset()
     axios
       .put(`/admin/api/v1/rates/${id}`, data)
       .then(response => {
         this.setState({ rates: response.data })
       })
-
+      .catch(errors => {
+        console.log(errors)
+      })
   }
 
   _renderForm(id) {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form
+        noValidate
+        validated={this.state.validated}
+        onSubmit={this.handleSubmit}>
         <Form.Group controlId="forceSum">
           <Form.Label>Force Sum</Form.Label>
-          <Form.Control type="number" name="force_sum"
-            placeholder="Enter force sum" step="0.01" />
+          <Form.Control
+            required
+            min='0.01'
+            type="number"
+            name="force_sum"
+            placeholder="Enter force sum"
+            step="0.01"
+          />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid force sum.
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="forceDate">
           <Form.Label>Force Date</Form.Label>
-          <Form.Control type="datetime-local" name="force_date"
-            placeholder="Enter force date" />
+          <Form.Control
+            required
+            type="datetime-local"
+            name="force_date"
+            placeholder="Enter force date"
+          />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid force date.
+          </Form.Control.Feedback>
           <Form.Control type="hidden" defaultValue={id} name="id" />
         </Form.Group>
         <Button variant="primary" type="submit">

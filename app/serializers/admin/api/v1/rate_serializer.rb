@@ -1,6 +1,6 @@
 module ADMIN::API::V1
   class RateSerializer < ActiveModel::Serializer
     attributes :id, :title, :code, :current
-    has_many :histories
+    has_many :histories, serializer: HistorySerializer
   end
 end
