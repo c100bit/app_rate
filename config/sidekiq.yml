@@ -3,5 +3,5 @@
     every: '24h'   # Runs once per day
     class: UpdateRateJob
   force_rates:
-    every: '1m'   # Runs once per hour
+    every: '1h'   # Runs once per hour
     class: ForceRateJob
