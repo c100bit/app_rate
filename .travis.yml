@@ -1,28 +1,28 @@
 language: ruby
 rvm:
 - 2.6.5
-cache: 
+cache:
   bundler: true
   yarn: true
   directories:
-    - /home/travis/.rvm/
+  - "/home/travis/.rvm/"
 before_install:
-  - gem install bundler
-  - gem update bundler
+- gem install bundler
+- gem update bundler
 before_script:
-  - psql -c 'create database app_rate_test;' -U postgres
+- psql -c 'create database app_rate_test;' -U postgres
 script:
-  - bundle install --jobs=3 --retry=3
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rspec
+- bundle install --jobs=3 --retry=3
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rspec
 deploy:
   provider: heroku
   api_key:
-    secure: i5YB+oNBgygoNeFP/Y5feMT6gCP3iUGQoYlbpP874tL9uB3bWIyjf08/83HZLxTD457/Nu+PZcRRRCMdegG/1lDbykRYvRmNL+XopPiqO2HfyZXsrBpXhb1hzUDvziwMu95r35OnMTAWNY0zGKEZh7XTeWmwoteo2K9uSIUPICQcx+O0dstgEp/RZ6epn4nWzUKI1qYym2yiSyBn91O0mPo8XjAE4/6jnHWya+WQ+2c8YZy7wLEM08uldabLSXgLJWkYOKMH4HJUM1U7TifBJQTt7Ysb/aQuqGG3AqRdkUzo7kcQfnsbevdzq16e31Kc0RKTq/F8GpkBXm22BTBlDmJyRm8/siWkMj3lW3gUhq7ja3GPaI3pfwfKKz0LS4ZsoNCF7+i+ROinLEj1xOtlWIIIXVlxz4aALH9BiPr4o7zbbdPRbFiME+uchTqhtxKZlqwo/VOrCKOWFTHj7HBs05cBjLhqCFv1RpEp9b0fnPwwrceAgCIRMGa2E5vHA5M7V6bZD3ibCUgAJ7R3NDlwOVHDD7pd6gmhhJ4SodbYQycapQ+7byfG/mSVhTob0gvS2OY9V+Ft43gAnVNlmqfPHh64y0G2hUzGaPyyORfB7Au7jU0ukWHO8Hpx+Jihix59xjwaQJJtN0mC0GaUl+NjhzrL//vK63QfhaEoyj+YKoY=
+    secure: bMmTTOmvp0ZqDLhqp3MQTqyMFVtHnTPvRsj2rU0UBunQZIqzmV6GmmWPtlgg+544mvDRnFuq6+vrM5ig97a2AnVzFqklAwRjhLE7NLh2/hOswIEeKEb3G6a6AlLbTbNvYvfN8pKp0fkMUD+t/1BVY3kob6Yl8TWfGaCrSwjQbijUQvv+BoggMMM+IWFAUTYficKa/2Bxud4t8hn4i/79yYnCIcMBCCxqOmmZQBF02lDjDSgEGqFjc2HgIsUmYrKmeOVFK0TwEUvPlAEEjW6qE4CJHryi5WY0UHISjzzl/41XXHHbvH32Z1bHBPEWsGtUwcfCgwPcKDpEjbF9nX3OGXC4wytb1NFMpH69xqalf3G3hW5wJ/EJhsysRUV6MRUuhmldgrLYOD/aN8cxp0xpOkjNtH+YYaWNrfGfkRVq3pT9JtKcxgFlcX8CNg2QHSvYcovOELgbNGozNf0UY8t99pyPd1VzRWpllyXhiZ5GNlEFAc1TFfMff58P+BXaVAALZZn2TH3z+xMgpQEhst5I3hDrUqw1tCta4Xd1VgwyOFtuOg9ye7ETHNEK/gOoytA4zCpcnqSM+3FoGcPhyBOBiDCnb1nkZI72UpihbdI54XVTfG1hhsu0/ft+S5rV5tNZKaPRpPPmHjq+9nhOMaP+HlW4yieyI3mBX+TUXmTm+2c=
   app: apprate
   on:
     repo: c100bit/app_rate
 services:
-  - postgresql
-  - redis-server
+- postgresql
+- redis-server
