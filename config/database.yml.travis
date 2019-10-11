@@ -1,0 +1,5 @@
+test:
+  database: app_rate_test
+  adapter: postgresql
+  encoding: unicode
+  username: postgres

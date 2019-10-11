@@ -9,6 +9,8 @@ cache:
 before_install:
   - gem install bundler
   - gem update bundler
+before_script:
+  - psql -c 'create database app_rate_test;' -U postgres
 script:
   - bundle install --jobs=3 --retry=3
   - bundle exec rake db:create
@@ -21,3 +23,6 @@ deploy:
   app: apprate
   on:
     repo: c100bit/app_rate
+services:
+  - postgresql
+  - redis-server
