@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_195546) do
+ActiveRecord::Schema.define(version: 2019_10_11_063839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_195546) do
     t.float "force_sum"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index "lower((code)::text)", name: "index_rates_on_lower_code", unique: true
   end
 
   add_foreign_key "histories", "rates"
