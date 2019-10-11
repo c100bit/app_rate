@@ -6,6 +6,9 @@ import axios from 'axios'
 import Home from './Home'
 import Admin from './Admin'
 
+const csrfToken = document.querySelector('[name="csrf-token"]').content
+axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
 class App extends React.Component {
   render() {
     return (
